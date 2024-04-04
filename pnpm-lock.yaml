@@ -32,6 +32,9 @@ dependencies:
   webpack-cli:
     specifier: ^5.1.4
     version: 5.1.4(webpack@5.90.0)
+  zustand:
+    specifier: ^4.5.2
+    version: 4.5.2(@types/react@18.2.48)(react@18.2.0)
 
 devDependencies:
   '@types/cli-color':
