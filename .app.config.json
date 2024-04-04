@@ -1,0 +1,7 @@
+{
+  "project": "next-electron",
+  "appId": "App.Electron.My",
+  "productName": "My App",
+  "scheme": "my-app",
+  "port": 8888
+}
