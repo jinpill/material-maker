@@ -1,0 +1,23 @@
+@font-face {
+  font-family: "Pretendard Variable";
+  src: url("/PretendardVariable.ttf");
+}
+
+html,
+body,
+#__next {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+}
+
+body,
+button,
+input,
+textarea,
+select,
+kbd {
+  font-family: "Pretendard Variable", Pretendard, sans-serif;
+}
