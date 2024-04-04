@@ -1,21 +1,15 @@
-import { Canvas } from "@react-three/fiber";
+import ThreeJsView from "@/components/view/ThreeJsView";
 import Controls from "@/components/view/Controls";
-import AxesHelper from "./AxesHelper";
+import AxesHelper from "@/components/view/AxesHelper";
+import Models from "@/components/view/Models";
 
 const MainView = () => {
   return (
-    <Canvas
-      camera={{
-        position: [10, 10, 10],
-        fov: 75,
-        near: 0.1,
-        far: 10000,
-      }}
-      frameloop="demand"
-    >
+    <ThreeJsView>
       <Controls />
       <AxesHelper />
-    </Canvas>
+      <Models />
+    </ThreeJsView>
   );
 };
 
