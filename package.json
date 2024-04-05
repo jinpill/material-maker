@@ -1,18 +1,18 @@
 {
-  "name": "next-electron",
-  "description": "This project is a template for building desktop applications with Next.js and Electron. ⚡️",
+  "name": "material-maker",
+  "description": "This is a material maker app for 3D THREE.js development.",
   "author": {
     "name": "Jinpill Lee",
     "email": "hello@jinpill.dev"
   },
   "homepage": "https://jinpill.github.io/",
-  "version": "0.4.6",
+  "version": "1.0.0",
   "private": true,
   "main": "dist/main/index.bundle.js",
   "packageManager": "pnpm@8.15.1",
   "scripts": {
     "start": "electron .",
-    "dev:render": "next dev src/renderer -p 8888",
+    "dev:render": "next dev src/renderer -p 8891",
     "dev:main": "cross-env IS_DEV=true pnpm compile:preloads && cross-env IS_DEV=true pnpm compile:main && pnpm start",
     "compile:render": "next build src/renderer",
     "compile:preloads": "rm -rf dist/preloads && webpack --config webpack/preloads.config.js",
