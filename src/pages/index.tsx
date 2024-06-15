@@ -1,7 +1,9 @@
+import ControlPanel from "@/components/template/ControlPanel";
+
 const Home = () => {
   return (
     <div>
-      <h1>Pretendard Variable</h1>
+      <ControlPanel />
     </div>
   );
 };

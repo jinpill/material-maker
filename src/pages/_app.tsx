@@ -1,3 +1,4 @@
+import "@jinpill/react-libs/dist/variables.css";
 import "@/styles/globals.scss";
 import type { AppProps } from "next/app";
 
