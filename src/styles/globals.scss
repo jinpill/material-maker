@@ -1,0 +1,22 @@
+html,
+body,
+#__next {
+  height: 100%;
+}
+
+#__next > main {
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  margin: 0;
+}
+
+body,
+button,
+input,
+textarea,
+select {
+  font-family: sans-serif;
+}
