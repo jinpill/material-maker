@@ -1,3 +1,8 @@
+@font-face {
+  font-family: "Pretendard Variable";
+  src: url(/fonts/PretendardVariable.ttf) format("truetype");
+}
+
 html,
 body,
 #__next {
@@ -18,5 +23,5 @@ button,
 input,
 textarea,
 select {
-  font-family: sans-serif;
+  font-family: "Pretendard Variable", "Noto Sans KR", sans-serif;
 }
