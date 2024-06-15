@@ -5,7 +5,7 @@ import ControlPanel from "@/components/template/ControlPanel";
 import MainScene from "@/components/scene/MainScene";
 
 const Home = () => {
-  const fog = useMemo(() => new THREE.Fog(0xffff00), []);
+  const fog = useMemo(() => new THREE.Fog(0xffffff), []);
 
   return (
     <main>
