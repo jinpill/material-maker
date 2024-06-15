@@ -4,18 +4,17 @@
 /node_modules
 /.pnp
 .pnp.js
+.yarn/install-state.gz
 
 # testing
-/src/renderer/coverage
+/coverage
 
 # next.js
-/src/renderer/.next
-/src/renderer/out
+/.next/
+/out/
 
 # production
-/renderer/build
 /build
-/dist
 
 # misc
 .DS_Store
@@ -25,15 +24,13 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-.pnpm-debug.log*
 
 # local env files
 .env*.local
-.alpha-vars.json
+
+# vercel
+.vercel
 
 # typescript
 *.tsbuildinfo
 next-env.d.ts
-
-# notes
-TODO.md

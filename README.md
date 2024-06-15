@@ -1,53 +1,40 @@
-# next-electron
+This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## 📑 Documents
+## Getting Started
 
-자세한 내용은 아래 관련 문서를 참고해주세요.
-
-- [PNPM 커맨드 목록](./docs/pnpm.md)
-- [스크립트 목록](./docs/scripts.md)
-
-## 📕 Usage
-
-### 📥 Installation
-
-**의존성**을 설치합니다.
+First, run the development server:
 
 ```bash
-corepack enable
-pnpm run ci # pnpm ci ❌
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
 ```
 
-### 🚀 Development
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-**개발 서버**를 실행한 후, **일렉트론 앱**을 실행합니다.
+You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
 
-```bash
-# 1st Terminal
-pnpm dev:render
+[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
 
-# 2nd Terminal
-pnpm dev:main
-```
+The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
 
-### ⚙️ Configuration
+This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
 
-#### 💿 Format on Save (ESLint / Prettier)
+## Learn More
 
-아래 키를 눌러 설정 화면을 엽니다.
+To learn more about Next.js, take a look at the following resources:
 
-> **Windows** `Ctrl + ,`<br/> **MacOS** `⌘ + ,`
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-우측 상단의 **설정 열기(JSON) 버튼**을 클릭합니다.
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
-아래 내용을 추가 또는 수정합니다.
+## Deploy on Vercel
 
-```json
-{
-  "editor.formatOnSave": true,
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "editor.codeActionsOnSave": {
-    "source.fixAll.eslint": true
-  }
-}
-```
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
