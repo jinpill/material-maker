@@ -23,6 +23,7 @@ export const useMaterialStore = create<MaterialStoreState & MaterialStoreActions
 
       const newConfig: MeshMatcapMaterialConfig = {
         type: "MeshMatcapMaterial",
+        color: "#000000",
         ...config,
       };
 
@@ -43,6 +44,7 @@ export const useMaterialStore = create<MaterialStoreState & MaterialStoreActions
 
       const newConfig: MeshToonMaterialConfig = {
         type: "MeshToonMaterial",
+        color: "#000000",
         ...config,
       };
 
@@ -63,6 +65,7 @@ export const useMaterialStore = create<MaterialStoreState & MaterialStoreActions
 
       const newConfig: MeshBasicMaterialConfig = {
         type: "MeshBasicMaterial",
+        color: "#000000",
         ...config,
       };
 
@@ -103,6 +106,7 @@ export const useMaterialStore = create<MaterialStoreState & MaterialStoreActions
 
       const newConfig: MeshPhongMaterialConfig = {
         type: "MeshPhongMaterial",
+        color: "#000000",
         ...config,
       };
 
@@ -143,6 +147,7 @@ export const useMaterialStore = create<MaterialStoreState & MaterialStoreActions
 
       const newConfig: MeshLambertMaterialConfig = {
         type: "MeshLambertMaterial",
+        color: "#000000",
         ...config,
       };
 
@@ -183,6 +188,7 @@ export const useMaterialStore = create<MaterialStoreState & MaterialStoreActions
 
       const newConfig: MeshPhysicalMaterialConfig = {
         type: "MeshPhysicalMaterial",
+        color: "#000000",
         ...config,
       };
 
@@ -203,6 +209,7 @@ export const useMaterialStore = create<MaterialStoreState & MaterialStoreActions
 
       const newConfig: MeshStandardMaterialConfig = {
         type: "MeshStandardMaterial",
+        color: "#000000",
         ...config,
       };
 
@@ -366,14 +373,17 @@ export const MATERIAL_TYPES = [
 
 export type MeshMatcapMaterialConfig = {
   type: "MeshMatcapMaterial";
+  color: THREE.MeshMatcapMaterialParameters["color"];
 };
 
 export type MeshToonMaterialConfig = {
   type: "MeshToonMaterial";
+  color: THREE.MeshToonMaterialParameters["color"];
 };
 
 export type MeshBasicMaterialConfig = {
   type: "MeshBasicMaterial";
+  color: THREE.MeshBasicMaterialParameters["color"];
 };
 
 export type MeshDepthMaterialConfig = {
@@ -382,6 +392,7 @@ export type MeshDepthMaterialConfig = {
 
 export type MeshPhongMaterialConfig = {
   type: "MeshPhongMaterial";
+  color: THREE.MeshPhongMaterialParameters["color"];
 };
 
 export type MeshNormalMaterialConfig = {
@@ -390,6 +401,7 @@ export type MeshNormalMaterialConfig = {
 
 export type MeshLambertMaterialConfig = {
   type: "MeshLambertMaterial";
+  color: THREE.MeshLambertMaterialParameters["color"];
 };
 
 export type MeshDistanceMaterialConfig = {
@@ -398,8 +410,10 @@ export type MeshDistanceMaterialConfig = {
 
 export type MeshPhysicalMaterialConfig = {
   type: "MeshPhysicalMaterial";
+  color: THREE.MeshPhysicalMaterialParameters["color"];
 };
 
 export type MeshStandardMaterialConfig = {
   type: "MeshStandardMaterial";
+  color: THREE.MeshStandardMaterialParameters["color"];
 };

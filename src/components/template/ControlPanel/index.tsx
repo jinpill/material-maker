@@ -9,6 +9,7 @@ const ControlPanel = () => (
     <Panel.Contents>
       <Section.Environment />
       <Section.Material />
+      <Section.Configuration />
     </Panel.Contents>
   </Panel.Container>
 );

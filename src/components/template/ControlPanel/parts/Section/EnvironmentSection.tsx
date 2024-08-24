@@ -16,7 +16,7 @@ const EnvironmentSection = () => {
   const { preset, setPreset } = useEnvironmentStore();
 
   return (
-    <Panel.Section title="Environment" isCollapsible>
+    <Panel.Section title="Environment" isCollapsible isSpread>
       <Panel.Label name="Preset" contentWidth="large">
         <Dropdown
           size="small"

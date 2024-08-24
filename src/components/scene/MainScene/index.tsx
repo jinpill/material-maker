@@ -3,9 +3,9 @@ import { useMaterialStore } from "@/stores/useMaterialStore";
 import { useEnvironmentStore } from "@/stores/useEnvironmentStore";
 
 const MainScene = () => {
+  const { preset } = useEnvironmentStore();
   const { useMaterial } = useMaterialStore();
   const material = useMaterial();
-  const { preset } = useEnvironmentStore();
 
   return (
     <>
