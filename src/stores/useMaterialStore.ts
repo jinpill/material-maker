@@ -1,419 +1,143 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { create } from "zustand";
 import * as THREE from "three";
 
-export type MaterialStoreState = {
-  config: MeshMaterialConfig;
-};
-
-export type MaterialStoreActions = {
-  setConfig: <T extends MaterialType, C extends ConfigMap[T]>(type: T, config?: C) => void;
-  useMaterial: () => MeshMaterial;
-};
-
-export const useMaterialStore = create<MaterialStoreState & MaterialStoreActions>((set, get) => {
-  const setMeshMatcapMaterialConfig = (config?: Partial<MeshMatcapMaterialConfig>) => {
-    set((state) => {
-      if (state.config.type === "MeshMatcapMaterial") {
-        return {
-          ...state.config,
-          ...config,
-        };
-      }
-
-      const newConfig: MeshMatcapMaterialConfig = {
-        type: "MeshMatcapMaterial",
-        color: "#000000",
-        ...config,
-      };
-
-      return {
-        config: newConfig,
-      };
-    });
-  };
-
-  const setMeshToonMaterialConfig = (config?: Partial<MeshToonMaterialConfig>) => {
-    set((state) => {
-      if (state.config.type === "MeshToonMaterial") {
-        return {
-          ...state.config,
-          ...config,
-        };
-      }
-
-      const newConfig: MeshToonMaterialConfig = {
-        type: "MeshToonMaterial",
-        color: "#000000",
-        ...config,
-      };
-
-      return {
-        config: newConfig,
-      };
-    });
-  };
-
-  const setMeshBasicMaterialConfig = (config?: Partial<MeshBasicMaterialConfig>) => {
-    set((state) => {
-      if (state.config.type === "MeshBasicMaterial") {
-        return {
-          ...state.config,
-          ...config,
-        };
-      }
-
-      const newConfig: MeshBasicMaterialConfig = {
-        type: "MeshBasicMaterial",
-        color: "#000000",
-        ...config,
-      };
-
-      return {
-        config: newConfig,
-      };
-    });
-  };
-
-  const setMeshDepthMaterialConfig = (config?: Partial<MeshDepthMaterialConfig>) => {
-    set((state) => {
-      if (state.config.type === "MeshDepthMaterial") {
-        return {
-          ...state.config,
-          ...config,
-        };
-      }
-
-      const newConfig: MeshDepthMaterialConfig = {
-        type: "MeshDepthMaterial",
-        ...config,
-      };
-
-      return {
-        config: newConfig,
-      };
-    });
-  };
-
-  const setMeshPhongMaterialConfig = (config?: Partial<MeshPhongMaterialConfig>) => {
-    set((state) => {
-      if (state.config.type === "MeshPhongMaterial") {
-        return {
-          ...state.config,
-          ...config,
-        };
-      }
-
-      const newConfig: MeshPhongMaterialConfig = {
-        type: "MeshPhongMaterial",
-        color: "#000000",
-        ...config,
-      };
-
-      return {
-        config: newConfig,
-      };
-    });
-  };
-
-  const setMeshNormalMaterialConfig = (config?: Partial<MeshNormalMaterialConfig>) => {
-    set((state) => {
-      if (state.config.type === "MeshNormalMaterial") {
-        return {
-          ...state.config,
-          ...config,
-        };
-      }
-
-      const newConfig: MeshNormalMaterialConfig = {
-        type: "MeshNormalMaterial",
-        ...config,
-      };
-
-      return {
-        config: newConfig,
-      };
-    });
-  };
-
-  const setMeshLambertMaterialConfig = (config?: Partial<MeshLambertMaterialConfig>) => {
-    set((state) => {
-      if (state.config.type === "MeshLambertMaterial") {
-        return {
-          ...state.config,
-          ...config,
-        };
-      }
-
-      const newConfig: MeshLambertMaterialConfig = {
-        type: "MeshLambertMaterial",
-        color: "#000000",
-        ...config,
-      };
-
-      return {
-        config: newConfig,
-      };
-    });
-  };
-
-  const setMeshDistanceMaterialConfig = (config?: Partial<MeshDistanceMaterialConfig>) => {
-    set((state) => {
-      if (state.config.type === "MeshDistanceMaterial") {
-        return {
-          ...state.config,
-          ...config,
-        };
-      }
-
-      const newConfig: MeshDistanceMaterialConfig = {
-        type: "MeshDistanceMaterial",
-        ...config,
-      };
-
-      return {
-        config: newConfig,
-      };
-    });
-  };
-
-  const setMeshPhysicalMaterialConfig = (config?: Partial<MeshPhysicalMaterialConfig>) => {
-    set((state) => {
-      if (state.config.type === "MeshPhysicalMaterial") {
-        return {
-          ...state.config,
-          ...config,
-        };
-      }
-
-      const newConfig: MeshPhysicalMaterialConfig = {
-        type: "MeshPhysicalMaterial",
-        color: "#000000",
-        ...config,
-      };
-
-      return {
-        config: newConfig,
-      };
-    });
-  };
-
-  const setMeshStandardMaterialConfig = (config?: Partial<MeshStandardMaterialConfig>) => {
-    set((state) => {
-      if (state.config.type === "MeshStandardMaterial") {
-        return {
-          ...state.config,
-          ...config,
-        };
-      }
-
-      const newConfig: MeshStandardMaterialConfig = {
-        type: "MeshStandardMaterial",
-        color: "#000000",
-        ...config,
-      };
-
-      return {
-        config: newConfig,
-      };
-    });
-  };
-
-  return {
-    config: {
-      type: "MeshPhysicalMaterial",
-    },
-    setConfig: (type, config) => {
-      switch (type) {
-        case "MeshMatcapMaterial":
-          setMeshMatcapMaterialConfig(config as MeshMatcapMaterialConfig);
-          break;
-        case "MeshToonMaterial":
-          setMeshToonMaterialConfig(config as MeshToonMaterialConfig);
-          break;
-        case "MeshBasicMaterial":
-          setMeshBasicMaterialConfig(config as MeshBasicMaterialConfig);
-          break;
-        case "MeshDepthMaterial":
-          setMeshDepthMaterialConfig(config as MeshDepthMaterialConfig);
-          break;
-        case "MeshPhongMaterial":
-          setMeshPhongMaterialConfig(config as MeshPhongMaterialConfig);
-          break;
-        case "MeshNormalMaterial":
-          setMeshNormalMaterialConfig(config as MeshNormalMaterialConfig);
-          break;
-        case "MeshLambertMaterial":
-          setMeshLambertMaterialConfig(config as MeshLambertMaterialConfig);
-          break;
-        case "MeshDistanceMaterial":
-          setMeshDistanceMaterialConfig(config as MeshDistanceMaterialConfig);
-          break;
-        case "MeshPhysicalMaterial":
-          setMeshPhysicalMaterialConfig(config as MeshPhysicalMaterialConfig);
-          break;
-        case "MeshStandardMaterial":
-          setMeshStandardMaterialConfig(config as MeshStandardMaterialConfig);
-          break;
-      }
-    },
-    useMaterial: () => {
-      const { config } = get();
-      const [material, setMaterial] = useState<MeshMaterial>(getMaterial(config));
-
-      useEffect(() => {
-        setMaterial((prevMaterial) => {
-          const newMaterial = getMaterial(config);
-          setTimeout(() => prevMaterial.dispose(), 0);
-          return newMaterial;
-        });
-      }, [config]);
-
-      return material;
-    },
-  };
-});
-
-const getMaterial = (config: MeshMaterialConfig): MeshMaterial => {
-  switch (config.type) {
-    case "MeshMatcapMaterial": {
-      const material = new THREE.MeshMatcapMaterial();
-      return material;
-    }
-    case "MeshToonMaterial": {
-      const material = new THREE.MeshToonMaterial();
-      return material;
-    }
-    case "MeshBasicMaterial": {
-      const material = new THREE.MeshBasicMaterial();
-      return material;
-    }
-    case "MeshDepthMaterial": {
-      const material = new THREE.MeshDepthMaterial();
-      return material;
-    }
-    case "MeshPhongMaterial": {
-      const material = new THREE.MeshPhongMaterial();
-      return material;
-    }
-    case "MeshNormalMaterial": {
-      const material = new THREE.MeshNormalMaterial();
-      return material;
-    }
-    case "MeshLambertMaterial": {
-      const material = new THREE.MeshLambertMaterial();
-      return material;
-    }
-    case "MeshDistanceMaterial": {
-      const material = new THREE.MeshDistanceMaterial();
-      return material;
-    }
-    case "MeshPhysicalMaterial": {
-      const material = new THREE.MeshPhysicalMaterial();
-      return material;
-    }
-    case "MeshStandardMaterial": {
-      const material = new THREE.MeshStandardMaterial();
-      return material;
-    }
-  }
-};
-
-type ConfigMap = {
-  MeshMatcapMaterial: MeshMatcapMaterialConfig;
-  MeshToonMaterial: MeshToonMaterialConfig;
-  MeshBasicMaterial: MeshBasicMaterialConfig;
-  MeshDepthMaterial: MeshDepthMaterialConfig;
-  MeshPhongMaterial: MeshPhongMaterialConfig;
-  MeshNormalMaterial: MeshNormalMaterialConfig;
-  MeshLambertMaterial: MeshLambertMaterialConfig;
-  MeshDistanceMaterial: MeshDistanceMaterialConfig;
-  MeshPhysicalMaterial: MeshPhysicalMaterialConfig;
-  MeshStandardMaterial: MeshStandardMaterialConfig;
-};
-
-export type MaterialType = keyof ConfigMap;
-
-export type MeshMaterialConfig =
-  | MeshMatcapMaterialConfig
-  | MeshToonMaterialConfig
-  | MeshBasicMaterialConfig
-  | MeshDepthMaterialConfig
-  | MeshPhongMaterialConfig
-  | MeshNormalMaterialConfig
-  | MeshLambertMaterialConfig
-  | MeshDistanceMaterialConfig
-  | MeshPhysicalMaterialConfig
-  | MeshStandardMaterialConfig;
-
-export type MeshMaterial =
-  | THREE.MeshMatcapMaterial
-  | THREE.MeshToonMaterial
-  | THREE.MeshBasicMaterial
-  | THREE.MeshDepthMaterial
-  | THREE.MeshPhongMaterial
-  | THREE.MeshNormalMaterial
-  | THREE.MeshLambertMaterial
-  | THREE.MeshDistanceMaterial
-  | THREE.MeshPhysicalMaterial
-  | THREE.MeshStandardMaterial;
-
 export const MATERIAL_TYPES = [
-  "MeshMatcapMaterial",
-  "MeshToonMaterial",
   "MeshBasicMaterial",
   "MeshDepthMaterial",
-  "MeshPhongMaterial",
-  "MeshNormalMaterial",
-  "MeshLambertMaterial",
-  // "MeshDistanceMaterial",
   "MeshPhysicalMaterial",
-  "MeshStandardMaterial",
 ] as const;
+export type MaterialType = (typeof MATERIAL_TYPES)[number];
 
-export type MeshMatcapMaterialConfig = {
-  type: "MeshMatcapMaterial";
-  color: THREE.MeshMatcapMaterialParameters["color"];
+type DefaultConfigs = {
+  [key in MaterialType]: MaterialConfigMap[key];
 };
 
-export type MeshToonMaterialConfig = {
-  type: "MeshToonMaterial";
-  color: THREE.MeshToonMaterialParameters["color"];
+const DEFAULT_CONFIGS: DefaultConfigs = {
+  MeshBasicMaterial: {
+    type: "MeshBasicMaterial",
+    color: "#000000",
+  },
+  MeshDepthMaterial: {
+    type: "MeshDepthMaterial",
+  },
+  MeshPhysicalMaterial: {
+    type: "MeshPhysicalMaterial",
+    color: "#000000",
+  },
 };
+
+export type MaterialStore = {
+  config: MaterialConfig;
+  getConfig: () => MaterialConfig;
+  setConfig: SetConfig;
+  useMaterial: () => THREE.Material;
+};
+
+export type MaterialConstructor = {
+  MeshBasicMaterial: THREE.MeshBasicMaterial;
+  MeshDepthMaterial: THREE.MeshDepthMaterial;
+  MeshPhysicalMaterial: THREE.MeshPhysicalMaterial;
+};
+
+export type MaterialConfigMap = {
+  MeshBasicMaterial: MeshBasicMaterialConfig;
+  MeshDepthMaterial: MeshDepthMaterialConfig;
+  MeshPhysicalMaterial: MeshPhysicalMaterialConfig;
+};
+
+export type MaterialConfig = MaterialConfigMap[keyof MaterialConfigMap];
+
+export type SetConfig = <T extends MaterialType, C extends MaterialConfigMap[T]>(
+  type: T,
+  config: Partial<C>
+) => void;
 
 export type MeshBasicMaterialConfig = {
   type: "MeshBasicMaterial";
-  color: THREE.MeshBasicMaterialParameters["color"];
+  color: string;
 };
 
 export type MeshDepthMaterialConfig = {
   type: "MeshDepthMaterial";
 };
 
-export type MeshPhongMaterialConfig = {
-  type: "MeshPhongMaterial";
-  color: THREE.MeshPhongMaterialParameters["color"];
-};
-
-export type MeshNormalMaterialConfig = {
-  type: "MeshNormalMaterial";
-};
-
-export type MeshLambertMaterialConfig = {
-  type: "MeshLambertMaterial";
-  color: THREE.MeshLambertMaterialParameters["color"];
-};
-
-export type MeshDistanceMaterialConfig = {
-  type: "MeshDistanceMaterial";
-};
-
 export type MeshPhysicalMaterialConfig = {
   type: "MeshPhysicalMaterial";
-  color: THREE.MeshPhysicalMaterialParameters["color"];
+  color: string;
 };
 
-export type MeshStandardMaterialConfig = {
-  type: "MeshStandardMaterial";
-  color: THREE.MeshStandardMaterialParameters["color"];
-};
+export const useMaterialStore = create<MaterialStore>((set, get) => {
+  const initialStore: MaterialStore = {
+    config: {
+      type: "MeshBasicMaterial",
+      color: "#000000",
+    },
+    getConfig: () => get().config,
+    setConfig: <T extends MaterialType, C extends MaterialConfigMap[T]>(
+      type: T,
+      config: Partial<C>
+    ) => {
+      set((state) => {
+        if (state.config.type === type) {
+          return {
+            config: {
+              ...state.config,
+              ...config,
+            },
+          };
+        }
+
+        return {
+          config: {
+            ...DEFAULT_CONFIGS[type],
+            ...config,
+          },
+        };
+      });
+    },
+    useMaterial: () => {
+      const { config } = get();
+
+      const material = useMemo(() => {
+        const material = getMaterial[config.type](config);
+        if (material) return material;
+        else return new THREE.MeshBasicMaterial();
+      }, [config]);
+
+      const materialRef = useRef<THREE.Material>(material);
+
+      useEffect(() => {
+        const prevMaterial = material;
+        materialRef.current = prevMaterial;
+        return prevMaterial.dispose;
+      }, []);
+
+      return material;
+    },
+  };
+
+  type GetMaterial = {
+    [key in MaterialType]: (config: MaterialConfigMap[MaterialType]) => MaterialConstructor[key];
+  };
+  const getMaterial: GetMaterial = {
+    MeshBasicMaterial: (config) => {
+      const _config = config as MeshBasicMaterialConfig;
+      return new THREE.MeshBasicMaterial({
+        color: _config.color,
+      });
+    },
+    MeshDepthMaterial: (config) => {
+      const _config = config as MeshDepthMaterialConfig;
+      return new THREE.MeshDepthMaterial({});
+    },
+    MeshPhysicalMaterial: (config) => {
+      const _config = config as MeshPhysicalMaterialConfig;
+      return new THREE.MeshPhysicalMaterial({
+        color: _config.color,
+      });
+    },
+  };
+
+  return initialStore;
+});
