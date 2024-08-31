@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef } from "react";
 import { create } from "zustand";
 import * as THREE from "three";
 
@@ -24,6 +24,8 @@ const DEFAULT_CONFIGS: DefaultConfigs = {
   MeshPhysicalMaterial: {
     type: "MeshPhysicalMaterial",
     color: "#000000",
+    metalness: 0.5,
+    flatShading: false,
   },
 };
 
@@ -65,6 +67,8 @@ export type MeshDepthMaterialConfig = {
 export type MeshPhysicalMaterialConfig = {
   type: "MeshPhysicalMaterial";
   color: string;
+  metalness: number;
+  flatShading: boolean;
 };
 
 export const useMaterialStore = create<MaterialStore>((set, get) => {
@@ -135,6 +139,8 @@ export const useMaterialStore = create<MaterialStore>((set, get) => {
       const _config = config as MeshPhysicalMaterialConfig;
       return new THREE.MeshPhysicalMaterial({
         color: _config.color,
+        metalness: _config.metalness,
+        flatShading: _config.flatShading,
       });
     },
   };

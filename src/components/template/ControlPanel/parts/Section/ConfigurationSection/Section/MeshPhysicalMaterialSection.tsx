@@ -9,6 +9,8 @@ type MeshPhysicalMaterialSectionProps = {
 const MeshPhysicalMaterialSection = (props: MeshPhysicalMaterialSectionProps) => (
   <>
     <Field.Color config={props.config} setConfig={props.setConfig} />
+    <Field.Metalness config={props.config} setConfig={props.setConfig} />
+    <Field.FlatShading config={props.config} setConfig={props.setConfig} />
   </>
 );
 

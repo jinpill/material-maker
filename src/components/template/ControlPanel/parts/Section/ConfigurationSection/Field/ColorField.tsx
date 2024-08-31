@@ -1,4 +1,5 @@
-import { Input, Panel } from "@jinpill/react-libs";
+import { Input } from "@jinpill/react-libs";
+import Label from "./utils/Label";
 import type {
   MeshBasicMaterialConfig,
   MeshPhysicalMaterialConfig,
@@ -11,7 +12,7 @@ type ColorFieldProps = {
 };
 
 const ColorField = (props: ColorFieldProps) => (
-  <Panel.Label name="Color" contentWidth="large">
+  <Label name="Color">
     <Input.Color
       size="small"
       value={props.config.color}
@@ -21,7 +22,7 @@ const ColorField = (props: ColorFieldProps) => (
         });
       }}
     />
-  </Panel.Label>
+  </Label>
 );
 
 export default ColorField;
