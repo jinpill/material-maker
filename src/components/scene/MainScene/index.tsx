@@ -4,7 +4,7 @@ import { useMaterialStore } from "@/stores/useMaterialStore";
 import { useEnvironmentStore } from "@/stores/useEnvironmentStore";
 
 const MainScene = () => {
-  const { preset } = useEnvironmentStore();
+  const { preset, intensity, rotation } = useEnvironmentStore();
   const { useMaterial } = useMaterialStore();
   const material = useMaterial();
 
@@ -14,7 +14,13 @@ const MainScene = () => {
 
   return (
     <>
-      {preset !== "none" && <Environment preset={preset} />}
+      {preset !== "none" && (
+        <Environment
+          preset={preset}
+          environmentIntensity={intensity}
+          environmentRotation={rotation}
+        />
+      )}
       <Sphere args={[1, 32, 32]} material={material} />
     </>
   );

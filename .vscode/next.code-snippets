@@ -1,0 +1,7 @@
+{
+  "Import Three.js": {
+    "prefix": "import-three",
+    "body": ["import * as ${1:THREE} from \"three\";"],
+    "scope": "typescript, typescriptreact"
+  }
+}
