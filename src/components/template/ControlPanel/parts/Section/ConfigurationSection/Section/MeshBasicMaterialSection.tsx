@@ -9,6 +9,8 @@ type MeshBasicMaterialSectionProps = {
 const MeshBasicMaterialSection = (props: MeshBasicMaterialSectionProps) => (
   <>
     <Field.Color config={props.config} setConfig={props.setConfig} />
+    <Field.Opacity config={props.config} setConfig={props.setConfig} />
+    <Field.Transparent config={props.config} setConfig={props.setConfig} />
   </>
 );
 

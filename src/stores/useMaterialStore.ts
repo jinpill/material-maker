@@ -17,14 +17,21 @@ const DEFAULT_CONFIGS: DefaultConfigs = {
   MeshBasicMaterial: {
     type: "MeshBasicMaterial",
     color: "#000000",
+    opacity: 1,
+    transparent: false,
   },
   MeshDepthMaterial: {
     type: "MeshDepthMaterial",
+    opacity: 1,
+    transparent: false,
   },
   MeshPhysicalMaterial: {
     type: "MeshPhysicalMaterial",
     color: "#000000",
     metalness: 0.5,
+    clearcoat: 0.5,
+    opacity: 1,
+    transparent: false,
     flatShading: false,
   },
 };
@@ -58,25 +65,29 @@ export type SetConfig = <T extends MaterialType, C extends MaterialConfigMap[T]>
 export type MeshBasicMaterialConfig = {
   type: "MeshBasicMaterial";
   color: string;
+  opacity: number;
+  transparent: boolean;
 };
 
 export type MeshDepthMaterialConfig = {
   type: "MeshDepthMaterial";
+  opacity: number;
+  transparent: boolean;
 };
 
 export type MeshPhysicalMaterialConfig = {
   type: "MeshPhysicalMaterial";
   color: string;
   metalness: number;
+  clearcoat: number;
+  opacity: number;
+  transparent: boolean;
   flatShading: boolean;
 };
 
 export const useMaterialStore = create<MaterialStore>((set, get) => {
   const initialStore: MaterialStore = {
-    config: {
-      type: "MeshBasicMaterial",
-      color: "#000000",
-    },
+    config: { ...DEFAULT_CONFIGS.MeshBasicMaterial },
     getConfig: () => get().config,
     setConfig: <T extends MaterialType, C extends MaterialConfigMap[T]>(
       type: T,
@@ -92,9 +103,27 @@ export const useMaterialStore = create<MaterialStore>((set, get) => {
           };
         }
 
+        const newConfig: MaterialConfigMap[T] = {
+          ...DEFAULT_CONFIGS[type],
+        };
+
+        Object.keys(state.config).forEach((key) => {
+          if (key === "type") return;
+
+          if (key in newConfig) {
+            type NewConfigValue = (typeof newConfig)[keyof typeof newConfig];
+            type NewConfigKey = keyof MaterialConfigMap[T];
+            type OldConfigKey = keyof typeof state.config;
+
+            const oldValue = state.config[key as OldConfigKey] as NewConfigValue;
+            if (typeof newConfig[key as NewConfigKey] !== typeof oldValue) return;
+            newConfig[key as NewConfigKey] = oldValue;
+          }
+        });
+
         return {
           config: {
-            ...DEFAULT_CONFIGS[type],
+            ...newConfig,
             ...config,
           },
         };
@@ -129,17 +158,25 @@ export const useMaterialStore = create<MaterialStore>((set, get) => {
       const _config = config as MeshBasicMaterialConfig;
       return new THREE.MeshBasicMaterial({
         color: _config.color,
+        opacity: _config.opacity,
+        transparent: _config.transparent,
       });
     },
     MeshDepthMaterial: (config) => {
       const _config = config as MeshDepthMaterialConfig;
-      return new THREE.MeshDepthMaterial({});
+      return new THREE.MeshDepthMaterial({
+        opacity: _config.opacity,
+        transparent: _config.transparent,
+      });
     },
     MeshPhysicalMaterial: (config) => {
       const _config = config as MeshPhysicalMaterialConfig;
       return new THREE.MeshPhysicalMaterial({
         color: _config.color,
         metalness: _config.metalness,
+        clearcoat: _config.clearcoat,
+        opacity: _config.opacity,
+        transparent: _config.transparent,
         flatShading: _config.flatShading,
       });
     },

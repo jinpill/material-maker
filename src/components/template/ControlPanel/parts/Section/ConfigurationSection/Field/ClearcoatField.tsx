@@ -2,27 +2,27 @@ import { Input } from "@jinpill/react-libs";
 import Label from "./utils/Label";
 import type { MeshPhysicalMaterialConfig, SetConfig } from "@/stores/useMaterialStore";
 
-type MetalnessFieldProps = {
+type ClearcoatFieldProps = {
   config: MeshPhysicalMaterialConfig;
   setConfig: SetConfig;
 };
 
-const MetalnessField = (props: MetalnessFieldProps) => (
-  <Label name="Metalness">
+const ClearcoatField = (props: ClearcoatFieldProps) => (
+  <Label name="Clearcoat">
     <Input.Number
       size="small"
       step="0.1"
       decimal="3"
-      min="-10"
-      max="10"
-      value={props.config.metalness}
+      min="0"
+      max="1"
+      value={props.config.clearcoat}
       onChange={(value) => {
         props.setConfig(props.config.type, {
-          metalness: value,
+          clearcoat: value,
         });
       }}
     />
   </Label>
 );
 
-export default MetalnessField;
+export default ClearcoatField;

@@ -10,6 +10,9 @@ const ConfigurationSection = () => {
       {config.type === "MeshBasicMaterial" && (
         <Section.MeshBasicMaterial config={config} setConfig={setConfig} />
       )}
+      {config.type === "MeshDepthMaterial" && (
+        <Section.MeshDepthMaterial config={config} setConfig={setConfig} />
+      )}
       {config.type === "MeshPhysicalMaterial" && (
         <Section.MeshPhysicalMaterial config={config} setConfig={setConfig} />
       )}
