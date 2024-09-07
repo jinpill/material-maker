@@ -30,6 +30,7 @@ const DEFAULT_CONFIGS: DefaultConfigs = {
     color: "#000000",
     metalness: 0.5,
     clearcoat: 0.5,
+    roughness: 0.5,
     opacity: 1,
     transparent: false,
     flatShading: false,
@@ -80,6 +81,7 @@ export type MeshPhysicalMaterialConfig = {
   color: string;
   metalness: number;
   clearcoat: number;
+  roughness: number;
   opacity: number;
   transparent: boolean;
   flatShading: boolean;
@@ -175,6 +177,7 @@ export const useMaterialStore = create<MaterialStore>((set, get) => {
         color: _config.color,
         metalness: _config.metalness,
         clearcoat: _config.clearcoat,
+        roughness: _config.roughness,
         opacity: _config.opacity,
         transparent: _config.transparent,
         flatShading: _config.flatShading,

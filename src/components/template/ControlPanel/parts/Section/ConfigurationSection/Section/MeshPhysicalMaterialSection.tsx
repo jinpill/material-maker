@@ -11,6 +11,7 @@ const MeshPhysicalMaterialSection = (props: MeshPhysicalMaterialSectionProps) =>
     <Field.Color config={props.config} setConfig={props.setConfig} />
     <Field.Metalness config={props.config} setConfig={props.setConfig} />
     <Field.Clearcoat config={props.config} setConfig={props.setConfig} />
+    <Field.Roughness config={props.config} setConfig={props.setConfig} />
     <Field.Opacity config={props.config} setConfig={props.setConfig} />
     <Field.Transparent config={props.config} setConfig={props.setConfig} />
     <Field.FlatShading config={props.config} setConfig={props.setConfig} />
