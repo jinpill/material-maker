@@ -87,7 +87,7 @@ export type MeshPhysicalMaterialConfig = {
 
 export const useMaterialStore = create<MaterialStore>((set, get) => {
   const initialStore: MaterialStore = {
-    config: { ...DEFAULT_CONFIGS.MeshBasicMaterial },
+    config: { ...DEFAULT_CONFIGS.MeshPhysicalMaterial },
     getConfig: () => get().config,
     setConfig: <T extends MaterialType, C extends MaterialConfigMap[T]>(
       type: T,

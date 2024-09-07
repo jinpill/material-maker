@@ -14,11 +14,15 @@ export type EnvironmentStore = {
 };
 
 export const useEnvironmentStore = create<EnvironmentStore>((set) => ({
-  preset: "none",
+  preset: "city",
   setPreset: (preset: EnvironmentPreset) => set({ preset }),
   intensity: 1,
   setIntensity: (intensity: number) => set({ intensity }),
-  rotation: new THREE.Euler(0, 0, 0),
+  rotation: new THREE.Euler(
+    THREE.MathUtils.degToRad(90),
+    THREE.MathUtils.degToRad(0),
+    THREE.MathUtils.degToRad(0)
+  ),
   setRotation: (axis, angle) => {
     set((state) => {
       const rotation = state.rotation.clone();
