@@ -21,7 +21,7 @@ const MainScene = () => {
           environmentRotation={rotation}
         />
       )}
-      <Sphere args={[1, 32, 32]} material={material} />
+      <Sphere args={[1, 64, 64]} material={material} rotation={[Math.PI / 2, 0, 0]} />
     </>
   );
 };

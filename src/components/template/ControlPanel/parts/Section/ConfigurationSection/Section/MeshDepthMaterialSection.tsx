@@ -10,6 +10,7 @@ const MeshDepthMaterialSection = (props: MeshDepthMaterialSectionProps) => (
   <>
     <Field.Opacity config={props.config} setConfig={props.setConfig} />
     <Field.Transparent config={props.config} setConfig={props.setConfig} />
+    <Field.Wireframe config={props.config} setConfig={props.setConfig} />
   </>
 );
 

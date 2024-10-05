@@ -19,11 +19,13 @@ const DEFAULT_CONFIGS: DefaultConfigs = {
     color: "#000000",
     opacity: 1,
     transparent: false,
+    wireframe: false,
   },
   MeshDepthMaterial: {
     type: "MeshDepthMaterial",
     opacity: 1,
     transparent: false,
+    wireframe: false,
   },
   MeshPhysicalMaterial: {
     type: "MeshPhysicalMaterial",
@@ -33,6 +35,7 @@ const DEFAULT_CONFIGS: DefaultConfigs = {
     roughness: 0.5,
     opacity: 1,
     transparent: false,
+    wireframe: false,
     flatShading: false,
   },
 };
@@ -68,12 +71,14 @@ export type MeshBasicMaterialConfig = {
   color: string;
   opacity: number;
   transparent: boolean;
+  wireframe: boolean;
 };
 
 export type MeshDepthMaterialConfig = {
   type: "MeshDepthMaterial";
   opacity: number;
   transparent: boolean;
+  wireframe: boolean;
 };
 
 export type MeshPhysicalMaterialConfig = {
@@ -84,6 +89,7 @@ export type MeshPhysicalMaterialConfig = {
   roughness: number;
   opacity: number;
   transparent: boolean;
+  wireframe: boolean;
   flatShading: boolean;
 };
 
@@ -162,6 +168,7 @@ export const useMaterialStore = create<MaterialStore>((set, get) => {
         color: _config.color,
         opacity: _config.opacity,
         transparent: _config.transparent,
+        wireframe: _config.wireframe,
       });
     },
     MeshDepthMaterial: (config) => {
@@ -169,6 +176,7 @@ export const useMaterialStore = create<MaterialStore>((set, get) => {
       return new THREE.MeshDepthMaterial({
         opacity: _config.opacity,
         transparent: _config.transparent,
+        wireframe: _config.wireframe,
       });
     },
     MeshPhysicalMaterial: (config) => {
@@ -180,6 +188,7 @@ export const useMaterialStore = create<MaterialStore>((set, get) => {
         roughness: _config.roughness,
         opacity: _config.opacity,
         transparent: _config.transparent,
+        wireframe: _config.wireframe,
         flatShading: _config.flatShading,
       });
     },
